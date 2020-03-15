@@ -1,0 +1,467 @@
+Version 2.0.20 (Feb 15, 2020)
+-----------------------------
+
+* Add Japanese translation
+* History: show entries in the order in which they were read
+* Add button to add to Home screen
+* Ignore enclosures without URL
+* Correct spelling of "toggle"
+* List view: align information to the left side, and the actionable buttons to the right
+* Redirect to /unread when getting a 404 for an unread expired entry
+* Do not advance to the next item when using the 'v' shortcut on the list of starred items
+* Wrap around when navigating with keyboard shortcuts on a list view
+* Remove unused Feed.Entries and Entry.Category from API client
+* Add comments link keyboard shortcut
+* Allow application/xhtml+xml links as comments URL in Atom replies
+* Allow only absolute URLs in comments URL
+* Use internal XML workarounds to detect feed format
+* Make menu consistent across feed pages
+* Make sure external URLs are not encoded incorrectly by Go template engine
+* Make sure whitelisted URI schemes are handled properly by the sanitizer
+* Use white background for favicon (Improve legibility when using a dark theme)
+* Remove dependency on Sed to build Docker images
+* Normalize URL query string before executing HTTP requests
+* Improve Dublin Core support for RDF feeds
+* Improve Podcast support (iTunes and Google Play feeds)
+* Add support for Atom 0.3
+* Add support for Atom "replies" link relation
+* Return outer HTML when scraping elements
+* Update scraper rule for "Le Monde"
+* Filter valid XML characters for UTF-8 XML documents before decoding
+* Trim spaces for RDF entry links
+
+Version 2.0.19 (Dec 1, 2019)
+----------------------------
+
+* Add shortcut "V" to open original link in current tab
+* Add the possibility to add rules during feed creation
+* Wrap attachments into <details> disclosure element
+* Show attachment size on entry page
+* Add support of RSS Media elements (group, description, peer link, and thumbnails)
+* Add rewrite functions: convert_text_link and nl2br
+* Add scraper rule for openingsource.org
+* Add Makefile target to build only amd64 Docker image
+* Make sure to remove integration settings when removing a user
+* Add API parameter to filter entries by category
+* Display list of feeds per category
+* Show the number of read and unread entries for each feed
+* Make sure settings menu is consistent
+* Remove fixed table-layout for entry content
+* Update autocert lib because ACME v1 is EOL
+* Do not lighten blockquote font color
+* Update de_DE translation
+* Send a response when changing status of removed entries in Fever API
+* Add meta tag to disable Google Translate
+* Improve storage module
+* Improve XML decoder to remove illegal characters
+* Compare Fever token case-insensitively
+* Make sure integration tests are marked as failed in Github Actions
+* Add new formats to date parser
+* Add notification message when using keyboard shortcuts: f, s, and m.
+* Avoid keyboard shortcuts to conflict with Firefox’s "Find as you type" feature
+
+Version 2.0.18 (Sep 25, 2019)
+-----------------------------
+
+* Add Docker image variant for arm32v7
+* Add theme variants
+    - Use CSS variables instead of inherence
+    - Rename default theme to "Light - Serif"
+    - Rename Black theme to "Dark - Serif"
+    - Rename "Sans-Serif" theme to "Light - Sans Serif"
+    - Add "System" theme that use system preferences: Dark or Light
+    - Add Serif and Sans-Serif variants for each color theme
+* Avoid constraint error when having duplicate entries during feed creation
+* Disable strict XML parsing
+* Ignore invalid content type
+* Update man page
+* Replace Travis by GitHub Actions
+* Rename cleanup config variables and deprecate old ones
+    - CLEANUP_FREQUENCY_HOURS instead of CLEANUP_FREQUENCY
+    - CLEANUP_ARCHIVE_READ_DAYS instead of ARCHIVE_READ_DAYS
+* Make configurable the number of days to remove old sessions
+* Add native lazy loading for images and iframes
+* Do not buffer responses in the image proxy
+* Update dependencies
+* Add Go 1.13 to test matrix
+* Replace link border by outline to avoid slight content shift
+* New rewrite function: add_mailto_subject
+* Import OPML from URL
+* Fix HTML injection in addImageTitle
+* Accept HTML entities when parsing XML
+
+Version 2.0.17 (Aug 3, 2019)
+----------------------------
+
+* Update Docker image to Alpine Linux 3.10.1
+* Pass auth header to manifest request (crossorigin attribute)
+* Sort feed categories before serialization
+* Fix syntax errors in man page
+* Add .search margin-right
+* Ask for confirmation before flushing history, marking page as read, and mark all as read
+* Add option to disable feeds
+
+Version 2.0.16 (Jun 8, 2019)
+----------------------------
+
+* Add option to toggle date/time in log messages
+* Add optional config file parser in addition to environment variables
+* Make HTTP Client timeout and max body size configurable
+* Refactor config package:
+    - Parse configuration only once during startup time
+    - Store configuration values in a global variable
+* Flip behavior of j and k keyboard shortcuts
+* Bump Postgresql client library to v1.1.1 to bring in SCRAM-SHA-256 authentication
+* Add option to enable/disable keyboard shortcuts
+* Add missing translation
+* Improve page reload when showing unread/all entries:
+    - Show only unread entries = refresh current page
+    - Show all entries = go to next page
+* Always display feed entries even when there is a feed error
+* Use loading label instead of saving when submitting login form
+* Add OPML v1 support during importation
+* Add 'allow-popups' to iframe sandbox permissions
+
+Version 2.0.15 (Mar 16, 2019)
+-----------------------------
+
+* Move Dockerfile to main repo
+* Change location of the binary from /usr/local/bin to /usr/bin in Docker image
+* Add double tap detection for next/previous page navigation
+* Allow users to disable auto-remove
+* Make parser compatible with Go 1.12
+* Add Golang 1.12 to CI
+* Use feed ID instead of user ID to check entry URLs presence
+* Fix typo in stylesheet
+* Sort search results by relevance
+* Use preferably the published date for Atom feeds
+* Add Spanish translation
+* Rename session cookies
+* Handle the case when application session is expired and not user session
+
+Version 2.0.14 (Jan 13, 2019)
+-----------------------------
+
+* Only attempt to change password if the confirmation field is filled in (Firefox)
+* Remove URL from client user agent
+* Make the feed list order case-insensitive
+* Handle XHTML Summary elements for Atom feeds
+* Make UTF-8 the default encoding for XML feeds
+* Add more targets to Makefile
+* Add -mod=vendor in Makefile
+* Move health check endpoint from ui package to httpd service
+* Add workaround for non GMT dates (RFC822, RFC850, and RFC1123)
+* Make sure `<strong>` elements are bold
+* Show scrollbars only when necessary for <pre> elements
+* Add Italian translation
+* Allow to switch between unread only and all entries on category/feed views
+* Add function storage.UpdateFeedError()
+* Add BBC News scraping rule
+* Ignore JSON feeds from EnsureUnicode()
+* Preserve category selection when no feed is found
+* Update XML encoding regex to take single quotes into consideration
+* Send cli errors to stderr
+* Update dependencies
+* Make password prompt compatible with Windows
+* Make configurable the number of days to archive read items
+* Change log level to debug when starting workers
+* Do not show $DATABASE_URL warning when showing application info
+* Move image proxy filter to template functions
+* Update scraper rule for lemonde.fr
+* Refactor manual entry scraper
+* Apply rewriter rules on manual "Fetch Original Content"
+* Add Makefile target for current OS and architecture
+* Improve Makefile
+
+Version 2.0.13 (Nov 25, 2018)
+-----------------------------
+
+* Add man page
+* Add support for Systemd Socket Activation (experimental)
+* Add the possiblity to listen on Unix sockets
+* Add config options to disable HTTP and scheduler services
+* Archive more read entries in cleanup job
+* Change default database connection string (backward compatible)
+* Improve logging messages in ui package
+* Improve overall Simplified Chinese translations
+* Improve time since post date displays:
+    - "15 days" now is "15 days" rather than "3 weeks" ago
+    - "32 days" is now "1 month" rather than "2 months" ago
+    - "366 days" is now "1 year" rather than "2 years" ago
+* Allow the scraper to parse XHTML documents
+* Remove charset=utf-8 from JSON responses
+* Ignore hotkeys containing Control, Alt or Meta keys
+* Handle more encoding conversion edge cases
+* Disable go test caching
+* Avoid duplication of ldflags in Makefile
+* Fix wrong translation key for category pages
+* Code refactoring:
+    - Simplify application HTTP middlewares
+    - Replace daemon and scheduler package with service package
+    - Move UI middlewares and routes to ui package
+    - Move API middleware and routes to api package
+    - Move Fever middleware and routes to fever package
+
+Version 2.0.12 (Oct 26, 2018)
+-----------------------------
+
+* Add OpenBSD build
+* Improve logging for OAuth2 callback
+* Make "g f" go to feed, or list of feeds
+* Add more details in feed storage errors to facilitate debugging
+* Add entries storage error to feed errors count
+* Set arbitrary maximum size for tsvector column
+* Unsubscribe from feed through link or "#"
+* Simplify feed entries filtering
+* Simplify feed fetcher
+* Simplify feed parser and format detection
+* Improve unit tests in url package
+* Add short cli flags -i and -v
+* Convert text links and line feeds to HTML in YouTube channels
+* Change link state when marking all entries as read
+* Add missing package descriptions for GoDoc
+* Fix typo in license header
+* Refactor HTTP response builder
+* Improve Fever API performances when marking a feed or group as read
+* Set focus on article link when pressing prev/next hotkeys
+* Improve request package and add more unit tests
+* Add more unit tests for config package
+* Simplify locale package usage (refactoring)
+* Translate application in Russian
+* Use disclosure widget <details> for advanced feed options
+* Use unique translation IDs instead of English text as key
+* Add more unit tests for template functions
+* Fix invalid output when truncating Unicode text in templates
+* Add the possibility to override default user agent for each feed
+* Split Makefile linux targets by architecture
+* Add compiler, Arch, and OS to info command
+* Avoid line break between emoji and (un)read/(un)star links
+* Build Docker image for multiple architectures (amd64, arm32v6, arm64v8)
+
+Version 2.0.11 (Sep 11, 2018)
+-----------------------------
+
+* Set cookie flag `SameSite` to Lax mode
+* Use predefined ciphers when TLS is configured
+* Avoid displaying an error when shutting down the daemon
+* Add "Mark this page as read" to the bottom
+* Store client IP address in request context
+* Refactor HTTP context handling
+* Make user creation via environment variables idempotent
+* Use regular text version of ✔︎ instead of emoji version on iOS
+* Add toggle status button to entry page
+* Migrate to Go Modules and Go 1.11
+* Show count of feeds with permanent errors in header menu
+* Display remote client IP in logs when having a login failure (Fail2Ban)
+* Add remove button in feed edit page
+* Split integration tests into multiple files
+* Update scraper rule for heise.de
+* Expose real error messages for internal server API errors
+* Move Golang API client in project source tree (the separate project is deprecated)
+* Use canonical imports
+* Add Procfile
+* Create database package (refactoring)
+* Update user agent with new website URL
+* Update German translation
+
+Version 2.0.10 (July 22, 2018)
+------------------------------
+
+* Avoid browser caching issues when assets changes
+* Add Gzip/Deflate compression for HTML, JSON, CSS and Javascript responses
+* Improve themes handling
+    * Store user theme in session
+    * Logged out users will keep their theme
+    * Add theme background color to web manifest and meta tag
+* Update application icon with different sizes
+* Add support for published tag in Atom feeds
+* Add tooltip to feed domain in feeds list (title attribute)
+* Prevent vertical scrolling on swipe
+* Show feed title instead of domain in items list
+* Add service worker to cache feed icons
+* Make image proxy configurable via IMAGE_PROXY environment variable:
+    * none = No proxy
+    * http-only = Proxy only non-HTTPS images (default)
+    * all = Proxy everything
+* Add alt attribute for feed icons
+* Update CI jshint check
+* Add embedly.com to iframe whitelist
+* Use passive event listeners for touch events
+* Add `add_dynamic_image` rewriter for JavaScript-loaded images
+* Change feed password field type to text to avoid auto-completion with Firefox
+    * Using autocomplete="off" or autocomplete="new-password" doesn't change anything
+    * Changing the input ID doesn't change anything
+    * Using a different input name doesn't change anything
+    * Only Chrome supports autocomplete="new-password"
+* Add base URL validation
+* Update default stylesheet name in HTML layout
+* Pre-generate themes stylesheets at build time
+* Update vendor dependencies
+* Refactor assets bundler and split Javascript files
+* Run sanitizer after all processing and entry content rewrite
+* Remove timestamp from generated files
+* Add support for protocol relative YouTube URLs
+* Add Postgres full-text search for entries
+* Add search form in user interface
+* Add search parameter to the API
+* Improve Dutch locales
+* Sandbox iframes when sanitizing
+* Keep consistent text size on mobile orientation change
+* Change permission of /etc/miniflux.conf to 600 instead of 644 in RPM package
+* Add tzdata package to Docker image
+* Update Docker image to Alpine Linux 3.8
+
+Version 2.0.9 (July 1, 2018)
+----------------------------
+
+* Avoid Chrome to autocomplete no-login password fields
+* Add cli flag to reset all feed errors
+* Do not ignore errored feeds when a user refresh feeds manually
+* Add specific 404 and 401 error messages
+* Strip binaries to reduce size
+* Make sure we always get the pagination in unread mode
+* Fix incorrect data value when toggling bookmark flag on entry page
+* Set opener to null when opening original URL with JavaScript
+* Remove unnecessary style
+* Refactor AddImageTitle rewriter
+    * Only processes images with `src` **and** `title` attributes (others are ignored)
+    * Processes **all** images in the document (not just the first one)
+    * Wraps the image and its title attribute in a `figure` tag with the title attribute's contents in a `figcaption` tag
+* Improve sanitizer to remove `style`, `noscript` and `script` tag contents
+* Improve feed and user API updates with optional values
+* Add new fields for feed username/password
+* Improve memory usage debug log
+* Disable keep-alive for HTTP client
+* Close HTTP response body even for failed requests
+* Add Sans-Serif theme
+* Rewrite iframe Youtube URLs to https://www.youtube-nocookie.com
+* Add more filters for API call `/entries`:
+    * before (unix timestamp)
+    * before_entry_id (int64)
+    * after (unix timestamp)
+    * after_entry_id (int64)
+    * starred (boolean)
+* Rewrite individual entry pagination SQL queries
+* Simplify entry query builder
+* Prevent items from sticking on touchend
+* Extended horizontal overflow to feed and category views
+* Translate missing strings
+* Update German translation
+
+Version 2.0.8 (June 4, 2018)
+----------------------------
+
+* Add Pocket integration
+* Rewrite RealIP() to avoid returning an empty string
+* Convert IP field from text to inet type
+* Improve error handling in integration clients
+* Make unread counter clickable
+* Archive read entries automatically after 60 days
+* Hide horizontal overflow when swiping articles on touch devices
+* Add API endpoint to get logged user
+* Fever API: Return response with an empty list if there is no item
+* Handle feeds with dates formatted as Unix timestamp
+
+Version 2.0.7 (May 7, 2018)
+---------------------------
+
+* Add API endpoint to import OPML file
+* Make sure to close request body in HTTP client
+* Do not show save link if no integration is configured
+* Make sure integrations are configured before to make any HTTP requests
+* Avoid people to unlink their OAuth2 account without having a local password
+* Do not use shared variable to translate templates (avoid concurrency issue)
+* Use vanilla HTTP handlers (refactoring)
+* Move HTTP client to its own package (refactoring)
+* Add middleware to read X-Forwarded-Proto header (refactoring)
+* Use Gorilla middleware (refactoring)
+* Scrape parent element for iframe
+* Add SoundCloud and Bandcamp iframe sources
+
+Version 2.0.6 (Apr 20, 2018)
+----------------------------
+
+* Improve graceful shutdown
+* Simplify Heroku deployment
+* Display memory usage and some metrics in logs
+* Increase read/write timeout for HTTP server
+* Add support for Dublin Core date in RDF feeds
+* Do not return an error if the user session is not found
+* Handle some non-english date formats
+* Add missing French translation
+* Rename RSS parser getters
+* Get the right comments URL when having multiple namespaces
+* Ignore caching headers for feeds that send "Expires: 0"
+* Update translations
+
+Version 2.0.5 (Apr 7, 2018)
+---------------------------
+
+* Avoid unread counter to be off by one when reading an entry
+* Add Comments URL to entries
+* Add FreeBSD build target
+* Handle RSS author elements with inner HTML
+* Fix typo in translations
+* Add Dutch translation
+* Convert enclosure size field to bigint
+* Switch CI to Go v1.10
+* Fix broken OPML import when compiling with Go 1.10
+
+Version 2.0.4 (Mar 5, 2018)
+---------------------------
+
+* Add Simplified Chinese translation
+* Add Nunux Keeper integration
+* Filter the list of timezones
+* Add timezone to entries dates for REST and Fever API
+* Show last login and session creation date in current timezone
+* Fix typo in edit user template
+* Improve parser error messages
+* Remove parentheses around feed error messages
+* Support localized feed errors generated by background workers
+* Print info message if DATABASE_URL is not set
+
+Version 2.0.3 (Feb 19, 2018)
+----------------------------
+
+* Add Polish translation
+* Change color of <q> tags for black theme
+* Add database indexes (don't forget to run database migrations)
+* Handle Atom feeds with HTML title
+* Strip invalid XML characters to avoid parsing errors
+* Improve error handling for HTTP client
+
+Version 2.0.2 (Feb 5, 2018)
+---------------------------
+
+* Add support for Let's Encrypt http-01 challenge
+* Move template functions outside engine (refactoring)
+* Take timezone into consideration when calculating relative time
+* Add support for HTTP Strict Transport Security header
+* Add support for base URLs with subfolders
+* Add missing about menu in settings
+* Show API URL endpoints in user interface
+* Do not update entry date while refreshing a feed
+* Add flag to toggle debug logging
+* Improve unread counter updates
+
+Version 2.0.1 (Jan 22, 2018)
+----------------------------
+
+* Change user agent (People are blocking the crawler with mod_security)
+* Move environment variables to config package (refactoring)
+* Add build targets for all ARM architectures
+* Do not crawl existing entry URLs
+* Show translated login page in user language when logged out
+* Handle more encoding edge cases:
+    - Feeds with charset specified only in Content-Type header and not in XML document
+    - Feeds with charset specified in both places
+    - Feeds with charset specified only in XML document and not in HTTP header
+* Add German translation
+* Add mark as read/unread link on list items
+* Add API endpoint for OPML export
+
+Version 2.0.0 (Jan 11, 2018)
+----------------------------
+
+* Initial release of Miniflux 2.

@@ -1,0 +1,52 @@
+{{ define "item_meta" }}
+<div class="item-meta">
+    <ul>
+        <li>
+            <a href="{{ route "feedEntries" "feedID" .entry.Feed.ID }}" title="{{ .entry.Feed.SiteURL }}">{{ truncate .entry.Feed.Title 35 }}</a>
+        </li>
+        <li>
+            <time datetime="{{ isodate .entry.Date }}" title="{{ isodate .entry.Date }}">{{ elapsed .user.Timezone .entry.Date }}</time>
+        </li>
+    </ul>
+    <ul>
+        {{ if .hasSaveEntry }}
+            <li>
+                <a href="#"
+                    title="{{ t "entry.save.title" }}"
+                    data-save-entry="true"
+                    data-save-url="{{ route "saveEntry" "entryID" .entry.ID }}"
+                    data-label-loading="{{ t "entry.state.saving" }}"
+                    data-label-done="{{ t "entry.save.completed" }}"
+                    >{{ t "entry.save.label" }}</a>
+            </li>
+        {{ end }}
+        <li>
+            <a href="{{ .entry.URL | safeURL  }}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" data-original-link="true">{{ t "entry.original.label" }}</a>
+        </li>
+        {{ if .entry.CommentsURL }}
+            <li>
+                <a href="{{ .entry.CommentsURL | safeURL  }}" title="{{ t "entry.comments.title" }}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" data-comments-link="true">{{ t "entry.comments.label" }}</a>
+            </li>
+        {{ end }}
+        <li>
+            <a href="#"
+                data-toggle-bookmark="true"
+                data-bookmark-url="{{ route "toggleBookmark" "entryID" .entry.ID }}"
+                data-label-loading="{{ t "entry.state.saving" }}"
+                data-label-star="☆&nbsp;{{ t "entry.bookmark.toggle.on" }}"
+                data-label-unstar="★&nbsp;{{ t "entry.bookmark.toggle.off" }}"
+                data-value="{{ if .entry.Starred }}star{{ else }}unstar{{ end }}"
+                >{{ if .entry.Starred }}★&nbsp;{{ t "entry.bookmark.toggle.off" }}{{ else }}☆&nbsp;{{ t "entry.bookmark.toggle.on" }}{{ end }}</a>
+        </li>
+        <li>
+            <a href="#"
+                title="{{ t "entry.status.title" }}"
+                data-toggle-status="true"
+                data-label-read="✔&#xfe0e;&nbsp;{{ t "entry.status.read" }}"
+                data-label-unread="✘&nbsp;{{ t "entry.status.unread" }}"
+                data-value="{{ if eq .entry.Status "read" }}read{{ else }}unread{{ end }}"
+                >{{ if eq .entry.Status "read" }}✘&nbsp;{{ t "entry.status.unread" }}{{ else }}✔&#xfe0e;&nbsp;{{ t "entry.status.read" }}{{ end }}</a>
+        </li>
+    </ul>
+</div>
+{{ end }}

@@ -1,0 +1,25 @@
+{{ define "title"}}{{ t "page.about.title" }}{{ end }}
+
+{{ define "content"}}
+<section class="page-header">
+    <h1>{{ t "page.about.title" }}</h1>
+    {{ template "settings_menu" dict "user" .user }}
+</section>
+
+<div class="panel">
+    <h3>Miniflux</h3>
+    <ul>
+        <li><strong>{{ t "page.about.version" }}</strong> {{ .version }}</li>
+        <li><strong>{{ t "page.about.build_date" }}</strong> {{ .build_date }}</li>
+    </ul>
+</div>
+
+<div class="panel">
+    <h3>{{ t "page.about.credits" }}</h3>
+    <ul>
+        <li><strong>{{ t "page.about.author" }}</strong> Frédéric Guillot</li>
+        <li><strong>{{ t "page.about.license" }}</strong> Apache 2.0</li>
+    </ul>
+</div>
+
+{{ end }}
